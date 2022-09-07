@@ -1,0 +1,2 @@
+#!/bin/bash
+tr `echo {a..m} | tr -d ' '` `echo {n..z} | tr -d ' '` | echo Hello | tr `echo {A..M} | tr -d ' '` `echo {N..Z} | tr -d ' '`
