@@ -1,0 +1,7 @@
+# update ssh config
+Host *
+	HostName 172.17.0.32
+	User ubuntu
+	Port 22
+	PasswordAuthentication no
+        IdentityFile ~/.ssh/school
