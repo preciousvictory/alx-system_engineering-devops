@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Install nginx web server  on your web-01 listening on port 80
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+echo -e 'GET /get HTTP/1.1\r
+User-Agent: bash\r
+Accept: */*\r
+Accept-Encoding: gzip\r
+Host: localhost\r
+Content-Type: text/html
+Content-Length: 30
+Connection: Keep-Alive\r
+\r
+' >&3
+
+echo "Holberton School" > /var/www/html/index.html
+sudo service restart nginx
