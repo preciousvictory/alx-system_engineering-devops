@@ -15,4 +15,5 @@ backend servers
     server 132521-web-02 34.224.94.217:80 check
 "
 echo "$balancer" >> /etc/haproxy/haproxy.cfg
-sudo service haproxy start
+sudo haproxy -c -V -f /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
