@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# a Bash script that will display information about subdomains.
+
+func () {
+	subdomain=$1
+	domain=$2
+
+	dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v subd="$subdomain" 'BEGIN { FS = " " } ; { print "The subdomain " subd " is a " $4 " record and points to " $5 }'
+}
+
+sub=( "www" "lb-01" "web-01" "web-02" )
+if [ "$#" -eq 1 ]
+then
+	for i in "${sub[@]}"
+	do
+		func "$i" "$1"
+	done
+fi
+if [ "$#" -eq 2 ]
+then
+	func "$2" "$1"
+fi
