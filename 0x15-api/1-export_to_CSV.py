@@ -12,7 +12,8 @@ if __name__ == "__main__":
     id_ = sys.argv[1]
     user = requests.get("{}users?id={}".format(url, id_)).json()
     todos = requests.get('{}todos?userId={}'.format(url, id_)).json()
-    with open('{}.csv'.format(id_), 'w', encoding='UTF8', newline='') as f:
+
+    with open('{}.csv'.format(id_), 'w', newline='') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
 
         data = [id_, user[0].get("username")]
