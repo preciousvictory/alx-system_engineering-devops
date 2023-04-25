@@ -12,8 +12,8 @@ if __name__ == "__main__":
     todos = requests.get('{}todos?userId={}'.format(url, id_)).json()
 
     info = []
-    dict_ = {}
     for t in todos:
+        dict_ = {}
         dict_["task"] = t.get("title")
         dict_["completed"] = t.get("completed")
         dict_["username"] = user[0].get("username")
