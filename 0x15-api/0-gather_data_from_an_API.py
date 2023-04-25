@@ -3,10 +3,10 @@
 a Python script that, using this REST API, for a given employee ID,
 returns information about his/her TODO list progress.
 """
+
 import json
 import sys
 import urllib.request
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
