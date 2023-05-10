@@ -2,7 +2,7 @@
 """ Function that queries the Reddit API """
 import requests
 after = None
-
+inx = 0
 
 def word_filter(word_list):
     mydict = {}
@@ -12,11 +12,11 @@ def word_filter(word_list):
             continue
         else:
             mydict[elem.lower()] = elem.lower()
-            mynewList.append(elem)
+            mynewList.append(elem.lower())
     return (mynewList)
 
 
-def count_words(subreddit, word_list, next_, count={}):
+def count_words(subreddit, word_list, i=inx, count={}):
     """a recursive function that queries the Reddit API, parses the title
     of all hot articles, and prints a sorted count of given keywords
     (case-insensitive, delimited by spaces."""
@@ -42,19 +42,22 @@ def count_words(subreddit, word_list, next_, count={}):
         if len(count) == 0:
             for word in words:
                 count[word] = 0
-        
-        i = word.index{next_}
 
+        c = 0
         for hots in hot_list:
-            if words[i].lower() in hots.lower():
-                count[words[i]] =+ 1
+            if words[i] in hots.lower():
+                c += 1
+                count[words[i]] = c
         i += 1
+
+        if i == len(words):
+            for key, val in count.items():
+                if val != 0:
+                    print('{}: {}'.format(key, val))
+            return
 
         if after is not None and i < len(word_list):
             count_words(subreddit, word_list, i, count)
-    
-        if after is None:
-            print(count)
 
     else:
         return (None)
