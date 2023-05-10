@@ -4,6 +4,7 @@ import requests
 after = None
 inx = 0
 
+
 def word_filter(word_list):
     mydict = {}
     mynewList = []
