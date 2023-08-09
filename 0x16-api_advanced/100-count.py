@@ -6,15 +6,10 @@ inx = 0
 
 
 def word_filter(word_list):
-    mydict = {}
-    mynewList = []
-    for elem in word_list:
-        if elem.lower() in mydict:
-            continue
-        else:
-            mydict[elem.lower()] = elem.lower()
-            mynewList.append(elem.lower())
-    return (mynewList)
+    for i in range(len(word_list)):
+        word = word_list[i].strip()
+        word_list[i] = word.lower()
+    return (word_list)
 
 
 def count_words(subreddit, word_list, i=inx, count={}):
@@ -40,17 +35,15 @@ def count_words(subreddit, word_list, i=inx, count={}):
         after = resp.get('data').get('after')
         words = word_filter(word_list)
 
-        if len(count) == 0:
-            for word in words:
-                count[word] = 0
-
         c = 0
         for hots in hot_list:
-            if words[i] in hots.lower():
-                c += 1
-                count[words[i]] = c
-        i += 1
+            s = hots.lower()
+            c += s.count(words[i])
+            
+        count[words[i]] = c
 
+        i += 1
+        
         if i == len(words):
             for key, val in count.items():
                 if val != 0:
