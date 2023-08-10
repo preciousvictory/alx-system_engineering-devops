@@ -34,15 +34,17 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 frontend http-frontend
+        mode http
         bind *:80
         http-request set-header X-Forwarded-Proto http
+        http-request redirect scheme https unless { ssl_fc }
         default_backend servers
 
 frontend https-frontend
-        bind *:443 ssl crt /etc/letsencrypt/live/www.victorycodes.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/www.victorycodes.tech.pem
         http-request set-header X-Forwarded-Proto https
         default_backend servers
-    
+
 backend servers
         balance roundrobin
         server 132521-web-01 54.164.209.159:80 check
