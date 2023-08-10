@@ -48,10 +48,11 @@ def count_words(subreddit, word_list, i=inx, count={}):
             for key, val in count.items():
                 if val != 0:
                     print('{}: {}'.format(key, val))
-            return
 
         if after is not None and i < len(word_list):
             return count_words(subreddit, word_list, i, count)
+
+        return
 
     else:
         return (None)
