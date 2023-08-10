@@ -51,7 +51,7 @@ def count_words(subreddit, word_list, i=inx, count={}):
             return
 
         if after is not None and i < len(word_list):
-            count_words(subreddit, word_list, i, count)
+            return count_words(subreddit, word_list, i, count)
 
     else:
         return (None)
