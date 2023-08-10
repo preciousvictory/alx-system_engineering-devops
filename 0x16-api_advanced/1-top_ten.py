@@ -11,7 +11,11 @@ def top_ten(subreddit):
     response = requests.get(url, headers=headers, allow_redirects=False)
     res = response.json()
     if response.status_code == 200:
+        c = 0
         for hot in res.get('data').get('children'):
+            if c == 10:
+                return
             print(hot.get('data').get('title'))
+            c += 1
         return
     print('None')
