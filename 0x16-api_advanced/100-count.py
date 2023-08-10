@@ -39,11 +39,11 @@ def count_words(subreddit, word_list, i=inx, count={}):
         for hots in hot_list:
             s = hots.lower()
             c += s.count(words[i])
-            
+
         count[words[i]] = c
 
         i += 1
-        
+
         if i == len(words):
             for key, val in count.items():
                 if val != 0:
